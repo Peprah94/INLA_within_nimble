@@ -61,37 +61,23 @@ code <-nimbleCode({
     beta[1] ~ dnorm(0,sd=1)  
     beta[2] ~ dnorm(0,sd=1)
   #}
-
+    for(i in 1:N){
+    linpred[i] <- inla.res[1]+ beta[1]*x[i,1]+ beta[2]*x[i,2]
+    y[i] ~ dnorm(linpred[i],inla.res[2])
+    }
+    #Note that x=x_obs, y=y_obs
+    #I don't know if I am doing right
+    #But that is a trick I have employed
 })
 
-#Code for MCMC in NIMBLE
-#code <- nimbleCode({
-  #Prior for beta1 and beta2
-  #for(j in 1:2){
- #   beta[j] ~ dnorm(0,sd = 5)  
- # }
-
-  #Bivariate linear model specification
-  #for(i in 1:N){
-    #linpred[i] <- inla.res[1]+ beta[1]*x[i,1]+ beta[2]*x[i,2]
-  #  linpred[i] <- inla.res[1]+ 1*x[i,1]+ 2*x[i,2]
-  #  y_obs[i] ~ dnorm(linpred[i],inla.res[2]) 
-    
-    #We test with constant values for constant and the model works
-    #linpred[i] <- 1+ beta[1]*x[i,1]+ beta[2]*x[i,2]
-    #y[i] ~ dnorm(linpred[i],sd=1 ) 
-
- # }
-  
-  #Fitting the inla with the simulated parameters
-  #inla.res[1:2] <- CnimbleINLA(x[1:N,1:2],y[1:N],beta[1:2])
-#})
 
 ## Parameterising the nimble model
 
 #Data
 inla_data <- list(y_obs=df$y, 
-                  x_obs = df$x)
+                  x_obs = df$x,
+                  y = df$y,
+                  x=df$x)
 
 #Constants
 const <- list(N = 100)
@@ -118,12 +104,14 @@ mwtc <- nimbleModel(code,
                     constants = const#, 
                     #inits = initsList
                     )
-
+#library(igraph)
+#plot(mwtc$modelDef$graph)
+                                   
 # Create the model in C
 Cmwtc <- compileNimble(mwtc,showCompilerOutput = FALSE) #Have issues compiling
 
 
-mcmcconf <- configureMCMC(Cmwtc, monitors = c("beta"))#, "inla.res"))
+mcmcconf <- configureMCMC(Cmwtc, monitors = c("beta", "inla.res"))
 
 Rmcmc <- buildMCMC(mcmcconf, 
                    enableWAIC =FALSE)
@@ -135,9 +123,9 @@ cmcmc <- compileNimble(Rmcmc,
 
 # Run the MCMC
 mcmc.out <- runMCMC(cmcmc, 
-                    niter = 5000,
+                    niter = 500,
                     nchains = 3,
-                    nburnin = 2500,
+                   # nburnin = 2500,
                     #inits = initsList,
                     #thin =10, 
                     setSeed = TRUE, 
