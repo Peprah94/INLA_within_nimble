@@ -5,6 +5,7 @@ library(mvtnorm)
 library(MASS)
 library(parallel)
 library(coda)
+library(ggmcmc)
 
 # function for generating samples
 sample.linreg <- function(){
@@ -139,8 +140,11 @@ output <- mcmc.out$summary$all.chains
 output
 
 # Diagnostics for the model
-coda_samples <- mcmc(mcmc.out$samples)
-mcmcplot(coda_samples)
+mcmc_samples <- ggs(mcmc.out$samples)
+ggs_traceplot(mcmc_samples)
+ggs_density(mcmc_samples)
+ggs_effective(mcmc_samples)
+ggs_Rhat(mcmc_samples)
 
 #Save the output
 save(output, file="output.RData")
