@@ -1,0 +1,1065 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage[noblocks]{authblk}
+\renewcommand*{\Authsep}{, }
+\renewcommand*{\Authand}{, }
+\renewcommand*{\Authands}{, }
+\renewcommand\Affilfont{\small}
+\usepackage{mathtools}
+\usepackage[sort, round]{natbib}
+\usepackage[left]{lineno}
+\usepackage{tabularx}
+\linenumbers
+\usepackage[a4paper, total={6in, 10in}]{geometry}
+\usepackage{longtable}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=black]{hyperref}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{multirow}
+\usepackage{setspace}\doublespacing
+\renewcommand{\abstractname}{Summary}
+\usepackage{bm}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{rotating}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Using NIMBLE to implement Markov Chain Monte Carlo with Integrated Nested Laplace approximation},
+  pdfauthor={Kwaku Peprah Adjei; Robert B. O'Hara},
+  colorlinks=true,
+  linkcolor={black},
+  filecolor={Maroon},
+  citecolor={black},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Using NIMBLE to implement Markov Chain Monte Carlo with
+Integrated Nested Laplace approximation}
+
+
+\author[1,2]{Kwaku Peprah Adjei}
+\author[1,2]{Robert B. O'Hara}
+
+\affil[1]{Department of Mathematical Sciences, Norwegian University of
+Science and Technology}
+\affil[2]{Center for Biodiversity Dynamics, Norwegian University of
+Science and Technology}
+
+
+\date{}
+\begin{document}
+\maketitle
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[boxrule=0pt, breakable, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, frame hidden, enhanced]}{\end{tcolorbox}}\fi
+
+\hypertarget{build-inla-function}{%
+\section{Build INLA function}\label{build-inla-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{inlaStepVirtual }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunctionVirtual}\NormalTok{(}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{                 ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\NormalTok{  \}}
+\NormalTok{)}
+
+\CommentTok{\# Bootstrap filter as specified in Doucet \& Johnasen \textquotesingle{}08,}
+\CommentTok{\# uses weights from previous time point to calculate likelihood estimate.}
+\NormalTok{inlaFStep }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}inlaFStep\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{contains =}\NormalTok{ inlaStepVirtual,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model,}
+\NormalTok{                   mvEWSamples,}
+\NormalTok{                   fixedVals,}
+                  \CommentTok{\# inlaModel,}
+\NormalTok{                   x,}
+\NormalTok{                   y,}
+                  \CommentTok{\# interInModel,}
+\NormalTok{                   fam}
+\NormalTok{                   ) \{}
+
+\NormalTok{    N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{                 ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+
+    \CommentTok{\#vals \textless{}{-} numeric(N, init=FALSE)}
+   \CommentTok{\# vals \textless{}{-}}
+    \CommentTok{\#ll \textless{}{-}}
+    \CommentTok{\#copy(mvEWSamples, model, nodes = fixedVals, row = 1)}
+\NormalTok{    res }\OtherTok{\textless{}{-}} \FunctionTok{nimbleINLA}\NormalTok{(x, y, }\AttributeTok{beta=}\NormalTok{ beta, fixedVals,  }\AttributeTok{family =}\NormalTok{ fam)}
+
+\NormalTok{    lll }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+
+   \ControlFlowTok{if}\NormalTok{(lll }\SpecialCharTok{==} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\{}
+     \FunctionTok{copy}\NormalTok{(mvEWSamples, model, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{   \}}\ControlFlowTok{else}\NormalTok{\{}
+     \FunctionTok{saveResults}\NormalTok{(fixedVals, res)}
+     \FunctionTok{copy}\NormalTok{( model, mvEWSamples, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{   \}}
+
+\NormalTok{      out }\OtherTok{\textless{}{-}}\NormalTok{ lll}
+
+    \FunctionTok{return}\NormalTok{(out)}
+\NormalTok{  \},}
+\AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+\AttributeTok{saveResults =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{fixedVals =} \FunctionTok{character}\NormalTok{(}\DecValTok{0}\NormalTok{),}
+                       \AttributeTok{res =} \FunctionTok{double}\NormalTok{(}\DecValTok{2}\NormalTok{))\{}
+  \CommentTok{\#n \textless{}{-} length(fixedVals)}
+\NormalTok{  vals }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+  \FunctionTok{values}\NormalTok{(model, fixedVals) }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{c}\NormalTok{(vals)}
+  
+  \FunctionTok{return}\NormalTok{(vals)}
+  \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\NormalTok{\}}
+\NormalTok{)}
+\NormalTok{)}
+
+
+\CommentTok{\# Bootstrap filter as specified in Doucet \& Johnasen \textquotesingle{}08,}
+\CommentTok{\# uses weights from previous time point to calculate likelihood estimate.}
+\NormalTok{inlaFStepMultiple }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}inlaFStepMultiple\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{contains =}\NormalTok{ inlaStepVirtual,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model,}
+\NormalTok{                   mvEWSamples,}
+\NormalTok{                   fixedVals,}
+                   \CommentTok{\# inlaModel,}
+\NormalTok{                   x,}
+\NormalTok{                   y,}
+                   \CommentTok{\# interInModel,}
+\NormalTok{                   fam}
+\NormalTok{  ) \{}
+    \CommentTok{\#res \textless{}{-} inlaModel(x, y, beta, fixedVals, interInModel, family = fam)}
+    \CommentTok{\#copy(model, mvEWSamples, nodes = fixedVals, row = 1)}
+\NormalTok{    N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+
+    \CommentTok{\#     if(N \textgreater{}1)\{}
+    \CommentTok{\#       mult \textless{}{-} TRUE}
+    \CommentTok{\#       \#vals \textless{}{-} rep(0, N)}
+    \CommentTok{\#     \}else\{}
+    \CommentTok{\#       mult \textless{}{-} FALSE}
+    \CommentTok{\#      \# vals \textless{}{-} 0}
+    \CommentTok{\#     \}}
+    \CommentTok{\#     print(mult)}
+    \CommentTok{\# print(N)}
+
+    \CommentTok{\# mult \textless{}{-} TRUE}
+    \CommentTok{\# mult1 \textless{}{-} FALSE}
+    \CommentTok{\# if(length(fixedVals) == 1)\{}
+    \CommentTok{\#   mult \textless{}{-} FALSE}
+    \CommentTok{\#   mult1 \textless{}{-} TRUE\}}
+    \CommentTok{\# print(mult)}
+    \CommentTok{\#}
+    \CommentTok{\# if(N ==1)\{}
+    \CommentTok{\#   mult \textless{}{-} FALSE}
+    \CommentTok{\# \}else\{}
+    \CommentTok{\#   mult \textless{}{-} TRUE}
+    \CommentTok{\# \}}
+    \CommentTok{\#}
+    \CommentTok{\# if(N == 1)\{}
+    \CommentTok{\#   vals \textless{}{-} 0}
+    \CommentTok{\# \}else\{}
+    \CommentTok{\#   vals \textless{}{-} rep(0, N)}
+    \CommentTok{\# \}}
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{) }\CommentTok{\# beta is a vector}
+
+\NormalTok{  ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+
+\NormalTok{    res }\OtherTok{\textless{}{-}} \FunctionTok{nimbleINLA}\NormalTok{(x, y, }\AttributeTok{beta=}\NormalTok{ beta, fixedVals,  }\AttributeTok{family =}\NormalTok{ fam)}
+   
+
+\NormalTok{    lll }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+
+    \ControlFlowTok{if}\NormalTok{(lll }\SpecialCharTok{==} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\{}
+      \FunctionTok{copy}\NormalTok{(mvEWSamples, model, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      \FunctionTok{saveResults}\NormalTok{(fixedVals, res)}
+      \FunctionTok{copy}\NormalTok{( model, mvEWSamples, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}
+
+  
+\NormalTok{      out }\OtherTok{\textless{}{-}}\NormalTok{ lll}
+
+    \FunctionTok{return}\NormalTok{(out)}
+\NormalTok{  \},}
+  \AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{saveResults =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{fixedVals =} \FunctionTok{character}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+                           \AttributeTok{res =} \FunctionTok{double}\NormalTok{(}\DecValTok{2}\NormalTok{))\{}
+\NormalTok{      n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+\NormalTok{      vals }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n, }\AttributeTok{init =} \ConstantTok{FALSE}\NormalTok{)}
+
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(fixedVals))\{}
+
+\NormalTok{        vals[i] }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{, i }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]}
+
+\NormalTok{      \}}
+
+      \FunctionTok{values}\NormalTok{(model, fixedVals) }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{c}\NormalTok{(vals)}
+
+      \FunctionTok{return}\NormalTok{(vals)}
+      \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+
+
+\NormalTok{buildINLAmodel }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}buildINLAmodel\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model, fam, x, y, control) \{}
+\NormalTok{    inlaModel }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}fit.inla\textquotesingle{}}\NormalTok{,  }\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    fixedVals }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}fixedVals\textquotesingle{}}\NormalTok{,  }\FunctionTok{double}\NormalTok{())}
+
+\NormalTok{    yExpand }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(y, }\AttributeTok{returnScalarComponents =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    y }\OtherTok{\textless{}{-}}\NormalTok{ model[[y]]}
+
+    \CommentTok{\#save posterior samples}
+    \CommentTok{\#modelVals = modelValues(model, m = 1)}
+\NormalTok{    vars }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{getVarNames}\NormalTok{(}\AttributeTok{nodes =}\NormalTok{ fixedVals)}
+\NormalTok{    modelSymbolObjects }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{getSymbolTable}\NormalTok{()}\SpecialCharTok{$}\FunctionTok{getSymbolObjects}\NormalTok{()[vars]}
+
+\NormalTok{      names }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(modelSymbolObjects, }\ControlFlowTok{function}\NormalTok{(x)}\FunctionTok{return}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{name))}
+\NormalTok{      type }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(modelSymbolObjects, }\ControlFlowTok{function}\NormalTok{(x)}\FunctionTok{return}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{type))}
+\NormalTok{      size }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(modelSymbolObjects, }\ControlFlowTok{function}\NormalTok{(x)}\FunctionTok{return}\NormalTok{(x}\SpecialCharTok{$}\NormalTok{size))}
+\NormalTok{      size }\OtherTok{\textless{}{-}} \FunctionTok{lapply}\NormalTok{(size, }\ControlFlowTok{function}\NormalTok{(x)\{}
+        \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(x) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)\{}
+
+          \FunctionTok{return}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{        \}}\ControlFlowTok{else}\NormalTok{(}
+\NormalTok{          x}
+\NormalTok{        )}
+\NormalTok{      \} )}
+
+\NormalTok{      mvEWSamples }\OtherTok{\textless{}{-}} \FunctionTok{modelValues}\NormalTok{(}\FunctionTok{modelValuesConf}\NormalTok{(}\AttributeTok{vars =}\NormalTok{ names,}
+                                                 \AttributeTok{types =}\NormalTok{ type,}
+                                                 \AttributeTok{sizes =}\NormalTok{ size))}
+
+\NormalTok{      fixedVals }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(fixedVals)}
+
+\NormalTok{      multiple }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+      \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(fixedVals)) }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) multiple }\OtherTok{=} \ConstantTok{FALSE}
+
+\NormalTok{      inlaStepFunctions }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunctionList}\NormalTok{(inlaStepVirtual)}
+
+      \ControlFlowTok{if}\NormalTok{(multiple }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{)\{}
+\NormalTok{        inlaStepFunctions[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{inlaFStepMultiple}\NormalTok{(model,}
+\NormalTok{                                            mvEWSamples,}
+\NormalTok{                                            fixedVals,}
+                                            \CommentTok{\# inlaModel,}
+\NormalTok{                                            x,}
+\NormalTok{                                            y,}
+                                           \CommentTok{\# interInModel,}
+\NormalTok{                                            fam)}
+\NormalTok{        \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{          inlaStepFunctions[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}} \FunctionTok{inlaFStep}\NormalTok{(model,}
+\NormalTok{                                              mvEWSamples,}
+\NormalTok{                                              fixedVals,}
+                                              \CommentTok{\# inlaModel,}
+\NormalTok{                                              x,}
+\NormalTok{                                              y,}
+                                              \CommentTok{\# interInModel,}
+\NormalTok{                                              fam)}
+\NormalTok{        \}}
+      \CommentTok{\#\}}
+      \CommentTok{\#essVals \textless{}{-} rep(0, length(nodes))}
+
+\NormalTok{    lastLogLik }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\ConstantTok{Inf}
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta=}\FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}\CommentTok{\#, \# beta is a vector}
+
+\NormalTok{    ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{())}
+    \CommentTok{\#need this to retuen the saved mvEWSamples}
+    \FunctionTok{resize}\NormalTok{(mvEWSamples, }\DecValTok{1}\NormalTok{)}
+    \CommentTok{\# for(i in seq\_along(fixedVals))\{}
+    \CommentTok{\#   mvEWSamples[[fixedVals[i]]][1] \textless{}\textless{}{-} vals[i]}
+    \CommentTok{\# \}}
+\NormalTok{    out }\OtherTok{\textless{}{-}}\NormalTok{ inlaStepFunctions[[}\DecValTok{1}\NormalTok{]]}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(beta)}\CommentTok{\#, interInModel)}
+    \CommentTok{\#rr \textless{}{-} inlaStepFunctions[[1]]$mvEWSamples}
+\NormalTok{    logL }\OtherTok{\textless{}{-}}\NormalTok{ out}
+    \ControlFlowTok{if}\NormalTok{(logL }\SpecialCharTok{==} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{) \{lastLogLik }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ logL; }\FunctionTok{return}\NormalTok{(logL)\}}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.nan}\NormalTok{(logL)) \{lastLogLik }\OtherTok{\textless{}\textless{}{-}} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{; }\FunctionTok{return}\NormalTok{(}\SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\}}
+    \ControlFlowTok{if}\NormalTok{(logL }\SpecialCharTok{==} \ConstantTok{Inf}\NormalTok{)  \{lastLogLik }\OtherTok{\textless{}\textless{}{-}} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{; }\FunctionTok{return}\NormalTok{(}\SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\}}
+\NormalTok{    lastLogLik }\OtherTok{\textless{}\textless{}{-}}\NormalTok{  logL}
+    \FunctionTok{return}\NormalTok{(logL)}
+\NormalTok{  \},}
+  \AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{getLastLogLik =} \ControlFlowTok{function}\NormalTok{() \{}
+      \FunctionTok{return}\NormalTok{(lastLogLik)}
+      \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{())}
+\NormalTok{    \},}
+    \AttributeTok{setLastLogLik =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{lll =} \FunctionTok{double}\NormalTok{()) \{}
+\NormalTok{      lastLogLik }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ lll}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+
+\CommentTok{\# Bootstrap filter as specified in Doucet \& Johnasen \textquotesingle{}08,}
+\CommentTok{\# uses weights from previous time point to calculate likelihood estimate.}
+\NormalTok{inlaStepVirtualV2 }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunctionVirtual}\NormalTok{(}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+                 \AttributeTok{extraVars =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\NormalTok{  \}}
+\NormalTok{)}
+
+
+\NormalTok{inlaFStepV2 }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}inlaFStepV2\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{contains =}\NormalTok{ inlaStepVirtualV2,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model,}
+\NormalTok{                   mvEWSamples,}
+\NormalTok{                   fixedVals,}
+\NormalTok{                   x,}
+\NormalTok{                   y,}
+\NormalTok{                   fam}
+\NormalTok{  ) \{}
+\NormalTok{    N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+                 \AttributeTok{extraVars =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+
+\NormalTok{    res }\OtherTok{\textless{}{-}} \FunctionTok{nimbleINLA}\NormalTok{(x, y, }\AttributeTok{beta=}\NormalTok{ beta, }\AttributeTok{extraVars =}\NormalTok{ extraVars,fixedVals,  }\AttributeTok{family =}\NormalTok{ fam)}
+
+\NormalTok{    lll }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+
+    \ControlFlowTok{if}\NormalTok{(lll }\SpecialCharTok{==} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\{}
+      \FunctionTok{copy}\NormalTok{(mvEWSamples, model, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      \FunctionTok{saveResults}\NormalTok{(fixedVals, res)}
+      \FunctionTok{copy}\NormalTok{( model, mvEWSamples, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}
+
+\NormalTok{    out }\OtherTok{\textless{}{-}}\NormalTok{ lll}
+    \FunctionTok{return}\NormalTok{(out)}
+\NormalTok{  \},}
+  \AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{saveResults =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{fixedVals =} \FunctionTok{character}\NormalTok{(}\DecValTok{0}\NormalTok{),}
+                           \AttributeTok{res =} \FunctionTok{double}\NormalTok{(}\DecValTok{2}\NormalTok{))\{}
+      \CommentTok{\#n \textless{}{-} length(fixedVals)}
+\NormalTok{      vals }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+      \FunctionTok{values}\NormalTok{(model, fixedVals) }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{c}\NormalTok{(vals)}
+
+      \FunctionTok{return}\NormalTok{(vals)}
+      \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+
+
+
+\NormalTok{inlaFStepMultipleV2 }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}inlaFStepMultipleV2\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{contains =}\NormalTok{ inlaStepVirtualV2,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model,}
+\NormalTok{                   mvEWSamples,}
+\NormalTok{                   fixedVals,}
+                   \CommentTok{\# inlaModel,}
+\NormalTok{                   x,}
+\NormalTok{                   y,}
+                   \CommentTok{\# interInModel,}
+\NormalTok{                   fam}
+\NormalTok{  ) \{}
+\NormalTok{    N }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{beta =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{), }\CommentTok{\# beta is a vector}
+                  \AttributeTok{extraVars =} \FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\NormalTok{  ) \{}
+    \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{0}\NormalTok{))}
+
+\NormalTok{    res }\OtherTok{\textless{}{-}} \FunctionTok{nimbleINLA}\NormalTok{(x, y, }\AttributeTok{beta=}\NormalTok{ beta, }\AttributeTok{extraVars =}\NormalTok{ extraVars,fixedVals,  }\AttributeTok{family =}\NormalTok{ fam)}
+
+\NormalTok{    lll }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+
+    \ControlFlowTok{if}\NormalTok{(lll }\SpecialCharTok{==} \SpecialCharTok{{-}}\ConstantTok{Inf}\NormalTok{)\{}
+      \FunctionTok{copy}\NormalTok{(mvEWSamples, model, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+      \FunctionTok{saveResults}\NormalTok{(fixedVals, res)}
+      \FunctionTok{copy}\NormalTok{( model, mvEWSamples, }\AttributeTok{nodes =}\NormalTok{ fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{    out }\OtherTok{\textless{}{-}}\NormalTok{ lll}
+
+    \FunctionTok{return}\NormalTok{(out)}
+\NormalTok{  \},}
+  \AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{saveResults =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{fixedVals =} \FunctionTok{character}\NormalTok{(}\DecValTok{1}\NormalTok{),}
+                           \AttributeTok{res =} \FunctionTok{double}\NormalTok{(}\DecValTok{2}\NormalTok{))\{}
+\NormalTok{      n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(fixedVals)}
+\NormalTok{      vals }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(n, }\AttributeTok{init =} \ConstantTok{FALSE}\NormalTok{)}
+      \CommentTok{\#r \textless{}{-} character(0)}
+      \CommentTok{\#if(n \textgreater{} 1)\{}
+      \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \FunctionTok{seq\_along}\NormalTok{(fixedVals))\{}
+        \CommentTok{\# r \textless{}{-} fixedVals[i]}
+\NormalTok{        vals[i] }\OtherTok{\textless{}{-}}\NormalTok{ res[}\DecValTok{1}\NormalTok{, i }\SpecialCharTok{+} \DecValTok{1}\NormalTok{]}
+        \CommentTok{\#model[[r]] \textless{}\textless{}{-} vals[i]}
+\NormalTok{      \}}
+
+      \FunctionTok{values}\NormalTok{(model, fixedVals) }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{c}\NormalTok{(vals)}
+
+      \FunctionTok{return}\NormalTok{(vals)}
+      \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{customised-random-walk-block-sampler}{%
+\section{Customised random-walk block
+sampler}\label{customised-random-walk-block-sampler}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sampler\_RW\_INLA\_block }\OtherTok{\textless{}{-}} \FunctionTok{nimbleFunction}\NormalTok{(}
+  \AttributeTok{name =} \StringTok{\textquotesingle{}sampler\_RW\_INLA\_block\textquotesingle{}}\NormalTok{,}
+  \AttributeTok{contains =}\NormalTok{ sampler\_BASE,}
+  \AttributeTok{setup =} \ControlFlowTok{function}\NormalTok{(model, mvSaved, target,  control) \{}
+    \DocumentationTok{\#\# control list extraction}
+\NormalTok{    adaptive            }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}adaptive\textquotesingle{}}\NormalTok{,             }\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    adaptScaleOnly      }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}adaptScaleOnly\textquotesingle{}}\NormalTok{,       }\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{    adaptInterval       }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}adaptInterval\textquotesingle{}}\NormalTok{,        }\DecValTok{200}\NormalTok{)}
+\NormalTok{    adaptFactorExponent }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}adaptFactorExponent\textquotesingle{}}\NormalTok{,  }\FloatTok{0.8}\NormalTok{)}
+\NormalTok{    x                   }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{,  }\FunctionTok{double}\NormalTok{())}
+\NormalTok{    y                   }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}y\textquotesingle{}}\NormalTok{,  }\FunctionTok{character}\NormalTok{())}
+\NormalTok{    targetMCMC               }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}targetMCMC\textquotesingle{}}\NormalTok{,              }\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    mu                  }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}mu\textquotesingle{}}\NormalTok{,  }\ConstantTok{NULL}\NormalTok{)}
+    \CommentTok{\#obsVars \textless{}{-} extractControlElement(control, \textquotesingle{}obsVar\textquotesingle{},  character())}
+\NormalTok{    fixedVals           }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}fixedVals\textquotesingle{}}\NormalTok{,  }\FunctionTok{double}\NormalTok{())}
+\NormalTok{    fam                 }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}fam\textquotesingle{}}\NormalTok{,  }\StringTok{"gaussian"}\NormalTok{)}
+\NormalTok{    interVal            }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}interInModel\textquotesingle{}}\NormalTok{,  }\DecValTok{1}\NormalTok{)}
+\NormalTok{    scale               }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}scale\textquotesingle{}}\NormalTok{,                }\DecValTok{1}\NormalTok{)}
+\NormalTok{    propCov             }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}propCov\textquotesingle{}}\NormalTok{,              }\StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{)}
+\NormalTok{    existingINLA        }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}fit.inla\textquotesingle{}}\NormalTok{,                   }\ConstantTok{NULL}\NormalTok{)}
+\NormalTok{    m                   }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}pfNparticles\textquotesingle{}}\NormalTok{,         }\DecValTok{1000}\NormalTok{)}
+\NormalTok{    filterType          }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}pfType\textquotesingle{}}\NormalTok{,               }\StringTok{\textquotesingle{}bootstrap\textquotesingle{}}\NormalTok{)}
+\NormalTok{    filterControl       }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}pfControl\textquotesingle{}}\NormalTok{,            }\FunctionTok{list}\NormalTok{())}
+\NormalTok{    optimizeM           }\OtherTok{\textless{}{-}} \FunctionTok{extractControlElement}\NormalTok{(control, }\StringTok{\textquotesingle{}pfOptimizeNparticles\textquotesingle{}}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+ 
+    \DocumentationTok{\#\# node list generation}
+\NormalTok{    targetAsScalar      }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(target, }\AttributeTok{returnScalarComponents =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    calcNodes           }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{getDependencies}\NormalTok{(target)}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(fixedVals) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)\{}
+\NormalTok{    latentSamp }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{      latentSamp }\OtherTok{\textless{}{-}} \ConstantTok{FALSE}
+\NormalTok{    \}}
+\NormalTok{    fixedValsDep }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{getDependencies}\NormalTok{(fixedVals)}
+\NormalTok{    MCMCmonitors }\OtherTok{\textless{}{-}} \FunctionTok{tryCatch}\NormalTok{(}\FunctionTok{parent.frame}\NormalTok{(}\DecValTok{2}\NormalTok{)}\SpecialCharTok{$}\NormalTok{conf}\SpecialCharTok{$}\NormalTok{monitors, }\AttributeTok{error =} \ControlFlowTok{function}\NormalTok{(e) e)}
+
+\NormalTok{    topParams }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{getNodeNames}\NormalTok{(}\AttributeTok{stochOnly=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{includeData=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{topOnly=}\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    target }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(target)}
+    \DocumentationTok{\#\# numeric value generation}
+\NormalTok{    optimizeM     }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(optimizeM)}
+\NormalTok{    scaleOriginal }\OtherTok{\textless{}{-}}\NormalTok{ scale}
+\NormalTok{    timesRan      }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    timesAccepted }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    timesAdapted  }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    prevLL        }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    nVarEsts      }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    itCount       }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    d }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(targetAsScalar)}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.character}\NormalTok{(propCov) }\SpecialCharTok{\&\&}\NormalTok{ propCov }\SpecialCharTok{==} \StringTok{\textquotesingle{}identity\textquotesingle{}}\NormalTok{)     propCov }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(d)}
+\NormalTok{    propCovOriginal }\OtherTok{\textless{}{-}}\NormalTok{ propCov}
+\NormalTok{    chol\_propCov }\OtherTok{\textless{}{-}} \FunctionTok{chol}\NormalTok{(propCov)}
+\NormalTok{    chol\_propCov\_scale }\OtherTok{\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*}\NormalTok{ chol\_propCov}
+\NormalTok{    empirSamp }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow=}\NormalTok{adaptInterval, }\AttributeTok{ncol=}\NormalTok{d)}
+
+    \CommentTok{\# if(is.null(mu))\{}
+    \CommentTok{\#   muTarget \textless{}{-} nimble::values(model,target)}
+    \CommentTok{\# \}else\{}
+    \CommentTok{\#     muTarget \textless{}{-} mu}
+    \CommentTok{\#   \}}
+\NormalTok{    storeParticleLP }\OtherTok{\textless{}{-}} \SpecialCharTok{{-}}\ConstantTok{Inf}
+\NormalTok{    storeLLVar  }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    nVarReps }\OtherTok{\textless{}{-}} \DecValTok{7}    \DocumentationTok{\#\# number of LL estimates to compute to get each LL variance estimate for m optimization}
+\NormalTok{    mBurnIn  }\OtherTok{\textless{}{-}} \DecValTok{15}   \DocumentationTok{\#\# number of LL variance estimates to compute before deciding optimal m}
+    \ControlFlowTok{if}\NormalTok{(optimizeM)   m }\OtherTok{\textless{}{-}} \DecValTok{3000}
+    \DocumentationTok{\#\# nested function and function list definitions}
+\NormalTok{    my\_setAndCalculate }\OtherTok{\textless{}{-}} \FunctionTok{setAndCalculate}\NormalTok{(model, target)}
+\NormalTok{    my\_decideAndJump }\OtherTok{\textless{}{-}} \FunctionTok{decideAndJump}\NormalTok{(model, mvSaved, target, calcNodes)}
+\NormalTok{    my\_calcAdaptationFactor }\OtherTok{\textless{}{-}} \FunctionTok{calcAdaptationFactor}\NormalTok{(d, adaptFactorExponent)}
+
+    \CommentTok{\#yVals \textless{}{-} values(model, obsData)}
+\NormalTok{    my\_particleFilter }\OtherTok{\textless{}{-}} \FunctionTok{buildINLAmodel}\NormalTok{(model,}
+\NormalTok{                                        fam,}
+\NormalTok{                                        x,}
+                                        \AttributeTok{y =}\NormalTok{ y,}
+                                        \AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{fit.inla =}\NormalTok{ existingINLA,}
+                                                       \AttributeTok{fixedVals =}\NormalTok{ fixedVals))}
+
+                                                       \CommentTok{\#Target values for inla}
+\ControlFlowTok{if}\NormalTok{(}\FunctionTok{is.null}\NormalTok{(targetMCMC))\{}
+\NormalTok{  targetVal }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{values}\NormalTok{(model, targetAsScalar)}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{targetMCMCasScalar }\OtherTok{\textless{}{-}}\NormalTok{ model}\SpecialCharTok{$}\FunctionTok{expandNodeNames}\NormalTok{(targetMCMC, }\AttributeTok{returnScalarComponents =} \ConstantTok{TRUE}\NormalTok{)}
+
+\NormalTok{targetVal }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{values}\NormalTok{(model, }\FunctionTok{c}\NormalTok{(targetMCMCasScalar, targetAsScalar))}
+\NormalTok{   \}}
+
+\NormalTok{    particleMV }\OtherTok{\textless{}{-}}\NormalTok{ my\_particleFilter}\SpecialCharTok{$}\NormalTok{mvEWSamples}
+
+    \FunctionTok{print}\NormalTok{(latentSamp)}
+
+    \DocumentationTok{\#\# checks}
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{inherits}\NormalTok{(propCov, }\StringTok{\textquotesingle{}matrix\textquotesingle{}}\NormalTok{))                    }\FunctionTok{stop}\NormalTok{(}\StringTok{\textquotesingle{}propCov must be a matrix}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{inherits}\NormalTok{(propCov[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{], }\StringTok{\textquotesingle{}numeric\textquotesingle{}}\NormalTok{))              }\FunctionTok{stop}\NormalTok{(}\StringTok{\textquotesingle{}propCov matrix must be numeric}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{all}\NormalTok{(}\FunctionTok{dim}\NormalTok{(propCov) }\SpecialCharTok{==}\NormalTok{ d))                         }\FunctionTok{stop}\NormalTok{(}\StringTok{\textquotesingle{}propCov matrix must have dimension \textquotesingle{}}\NormalTok{, d, }\StringTok{\textquotesingle{}x\textquotesingle{}}\NormalTok{, d, }\StringTok{\textquotesingle{}}\SpecialCharTok{\textbackslash{}n}\StringTok{\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{isSymmetric}\NormalTok{(propCov))                           }\FunctionTok{stop}\NormalTok{(}\StringTok{\textquotesingle{}propCov matrix must be symmetric\textquotesingle{}}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(targetAsScalar) }\SpecialCharTok{\textless{}} \DecValTok{2}\NormalTok{)                      }\FunctionTok{stop}\NormalTok{(}\StringTok{\textquotesingle{}less than two top{-}level targets; cannot use RW\_PF\_block sampler, try RW\_PF sampler\textquotesingle{}}\NormalTok{)}
+   \CommentTok{\# if(any(target\%in\%model$expandNodeNames(latents)))   stop(\textquotesingle{}PMCMC \textbackslash{}\textquotesingle{}target\textbackslash{}\textquotesingle{} argument cannot include latent states\textquotesingle{})}
+\NormalTok{  \},}
+  \AttributeTok{run =} \ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{    storeParticleLP }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ my\_particleFilter}\SpecialCharTok{$}\FunctionTok{getLastLogLik}\NormalTok{()}
+\NormalTok{    modelLP0 }\OtherTok{\textless{}{-}}\NormalTok{ storeParticleLP }\SpecialCharTok{+} \FunctionTok{getLogProb}\NormalTok{(model, target)}
+\NormalTok{    propValueVector }\OtherTok{\textless{}{-}} \FunctionTok{generateProposalVector}\NormalTok{()}
+\NormalTok{    my\_setAndCalculate}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(propValueVector)}
+\NormalTok{    targetVal }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{values}\NormalTok{(model, targetAsScalar)}
+\NormalTok{    particleLP }\OtherTok{\textless{}{-}}\NormalTok{ my\_particleFilter}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(}\AttributeTok{beta =}\NormalTok{ targetVal)}\CommentTok{\#,interInModel = interVal)}
+\NormalTok{    modelLP1 }\OtherTok{\textless{}{-}}\NormalTok{ particleLP }\SpecialCharTok{+} \FunctionTok{getLogProb}\NormalTok{(model, target)}
+\NormalTok{    jump }\OtherTok{\textless{}{-}}\NormalTok{ my\_decideAndJump}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(modelLP1, modelLP0, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\NormalTok{jump) \{}
+\NormalTok{      my\_particleFilter}\SpecialCharTok{$}\FunctionTok{setLastLogLik}\NormalTok{(storeParticleLP)}
+\NormalTok{    \}}
+     \ControlFlowTok{if}\NormalTok{(jump }\SpecialCharTok{\&}\NormalTok{ latentSamp) \{}
+       \DocumentationTok{\#\# if we jump, randomly sample latent nodes from pf output and put}
+       \DocumentationTok{\#\# into model so that they can be monitored}
+    \CommentTok{\#   index \textless{}{-} ceiling(runif(1, 0, m))}
+       \FunctionTok{copy}\NormalTok{(particleMV, model, fixedVals, fixedVals, }\AttributeTok{row =} \DecValTok{1}\NormalTok{)}
+       \FunctionTok{calculate}\NormalTok{(model, fixedValsDep)}
+       \FunctionTok{copy}\NormalTok{(}\AttributeTok{from =}\NormalTok{ model, }\AttributeTok{to =}\NormalTok{ mvSaved, }\AttributeTok{nodes =}\NormalTok{ fixedValsDep, }\AttributeTok{row =} \DecValTok{1}\NormalTok{, }\AttributeTok{logProb =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    \}}
+     \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\NormalTok{jump }\SpecialCharTok{\&}\NormalTok{ latentSamp) \{}
+      \DocumentationTok{\#\# if we don\textquotesingle{}t jump, replace model latent nodes with saved latent nodes}
+       \FunctionTok{copy}\NormalTok{(}\AttributeTok{from =}\NormalTok{ mvSaved, }\AttributeTok{to =}\NormalTok{ model, }\AttributeTok{nodes =}\NormalTok{ fixedValsDep, }\AttributeTok{row =} \DecValTok{1}\NormalTok{, }\AttributeTok{logProb =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{     \}}
+    \DocumentationTok{\#\#if(jump \& !resample)  storeParticleLP \textless{}\textless{}{-} particleLP}
+    \ControlFlowTok{if}\NormalTok{(jump }\SpecialCharTok{\&}\NormalTok{ optimizeM) }\FunctionTok{optimM}\NormalTok{()}
+    \ControlFlowTok{if}\NormalTok{(adaptive)     }\FunctionTok{adaptiveProcedure}\NormalTok{(jump)}
+\NormalTok{  \},}
+  \AttributeTok{methods =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{optimM =} \ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{      tempM }\OtherTok{\textless{}{-}} \DecValTok{15000}
+      \FunctionTok{declare}\NormalTok{(LLEst, }\FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{, nVarReps))}
+      \ControlFlowTok{if}\NormalTok{(nVarEsts }\SpecialCharTok{\textless{}}\NormalTok{ mBurnIn) \{  }\CommentTok{\# checks whether we have enough var estimates to get good approximation}
+        \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{nVarReps)}
+\NormalTok{          LLEst[i] }\OtherTok{\textless{}{-}}\NormalTok{ my\_particleFilter}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(}\AttributeTok{beta =}\NormalTok{ targetVal)}\CommentTok{\#, interInModel = interVal)}
+        \DocumentationTok{\#\# next, store average of var estimates}
+        \ControlFlowTok{if}\NormalTok{(nVarEsts }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\NormalTok{          storeLLVar }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{var}\NormalTok{(LLEst)}\SpecialCharTok{/}\NormalTok{mBurnIn}
+        \ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{          LLVar }\OtherTok{\textless{}{-}}\NormalTok{ storeLLVar}
+\NormalTok{          LLVar }\OtherTok{\textless{}{-}}\NormalTok{ LLVar }\SpecialCharTok{+} \FunctionTok{var}\NormalTok{(LLEst)}\SpecialCharTok{/}\NormalTok{mBurnIn}
+\NormalTok{          storeLLVar }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ LLVar}
+\NormalTok{        \}}
+\NormalTok{        nVarEsts }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ nVarEsts }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{      \}}
+      \ControlFlowTok{else}\NormalTok{ \{  }\CommentTok{\# once enough var estimates have been taken, use their average to compute m}
+\NormalTok{        m }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ m}\SpecialCharTok{*}\NormalTok{storeLLVar}\SpecialCharTok{/}\NormalTok{(}\FloatTok{0.92}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{        m }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{ceiling}\NormalTok{(m)}
+\NormalTok{        storeParticleLP }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ my\_particleFilter}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(targetVal)}
+\NormalTok{        optimizeM }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{      \}}
+\NormalTok{    \},}
+    \AttributeTok{generateProposalVector =} \ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{      propValueVector }\OtherTok{\textless{}{-}} \FunctionTok{rmnorm\_chol}\NormalTok{(}\DecValTok{1}\NormalTok{, }\FunctionTok{values}\NormalTok{(model, targetAsScalar), chol\_propCov\_scale, }\DecValTok{0}\NormalTok{)  }\DocumentationTok{\#\# last argument specifies prec\_param = FALSE}
+      \FunctionTok{returnType}\NormalTok{(}\FunctionTok{double}\NormalTok{(}\DecValTok{1}\NormalTok{))}
+      \FunctionTok{return}\NormalTok{(propValueVector)}
+\NormalTok{    \},}
+    \AttributeTok{adaptiveProcedure =} \ControlFlowTok{function}\NormalTok{(}\AttributeTok{jump =} \FunctionTok{logical}\NormalTok{()) \{}
+\NormalTok{      timesRan }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ timesRan }\SpecialCharTok{+} \DecValTok{1}
+      \ControlFlowTok{if}\NormalTok{(jump)     timesAccepted }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ timesAccepted }\SpecialCharTok{+} \DecValTok{1}
+      \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\NormalTok{adaptScaleOnly)     empirSamp[timesRan, }\DecValTok{1}\SpecialCharTok{:}\NormalTok{d] }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{values}\NormalTok{(model, target)}
+      \ControlFlowTok{if}\NormalTok{(timesRan }\SpecialCharTok{\%\%}\NormalTok{ adaptInterval }\SpecialCharTok{==} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{        acceptanceRate }\OtherTok{\textless{}{-}}\NormalTok{ timesAccepted }\SpecialCharTok{/}\NormalTok{ timesRan}
+\NormalTok{        timesAdapted }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ timesAdapted }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{        adaptFactor }\OtherTok{\textless{}{-}}\NormalTok{ my\_calcAdaptationFactor}\SpecialCharTok{$}\FunctionTok{run}\NormalTok{(acceptanceRate)}
+\NormalTok{        scale }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ scale }\SpecialCharTok{*}\NormalTok{ adaptFactor}
+        \DocumentationTok{\#\# calculate empirical covariance, and adapt proposal covariance}
+        \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\NormalTok{adaptScaleOnly) \{}
+\NormalTok{          gamma1 }\OtherTok{\textless{}{-}}\NormalTok{ my\_calcAdaptationFactor}\SpecialCharTok{$}\FunctionTok{getGamma1}\NormalTok{()}
+          \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{d)     empirSamp[, i] }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ empirSamp[, i] }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(empirSamp[, i])}
+\NormalTok{          empirCov }\OtherTok{\textless{}{-}}\NormalTok{ (}\FunctionTok{t}\NormalTok{(empirSamp) }\SpecialCharTok{\%*\%}\NormalTok{ empirSamp) }\SpecialCharTok{/}\NormalTok{ (timesRan}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{          propCov }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ propCov }\SpecialCharTok{+}\NormalTok{ gamma1 }\SpecialCharTok{*}\NormalTok{ (empirCov }\SpecialCharTok{{-}}\NormalTok{ propCov)}
+\NormalTok{          chol\_propCov }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{chol}\NormalTok{(propCov)}
+\NormalTok{        \}}
+\NormalTok{        chol\_propCov\_scale }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ chol\_propCov }\SpecialCharTok{*}\NormalTok{ scale}
+\NormalTok{        timesRan }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{        timesAccepted }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{      \}}
+\NormalTok{    \},}
+    \AttributeTok{reset =} \ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{      scale   }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ scaleOriginal}
+\NormalTok{      propCov }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ propCovOriginal}
+\NormalTok{      chol\_propCov }\OtherTok{\textless{}\textless{}{-}} \FunctionTok{chol}\NormalTok{(propCov)}
+\NormalTok{      chol\_propCov\_scale }\OtherTok{\textless{}\textless{}{-}}\NormalTok{ chol\_propCov }\SpecialCharTok{*}\NormalTok{ scale}
+\NormalTok{      storeParticleLP }\OtherTok{\textless{}\textless{}{-}} \SpecialCharTok{{-}}\ConstantTok{Inf}
+\NormalTok{      timesRan      }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{      timesAccepted }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{      timesAdapted  }\OtherTok{\textless{}\textless{}{-}} \DecValTok{0}
+\NormalTok{      my\_calcAdaptationFactor}\SpecialCharTok{$}\FunctionTok{reset}\NormalTok{()}
+\NormalTok{    \}}
+\NormalTok{  )}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fitting-models-with-alternative-one}{%
+\section{Fitting models with Alternative
+One}\label{fitting-models-with-alternative-one}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{INLAWiNimDataGenerating }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data,}
+\NormalTok{                                    covariate,}
+\NormalTok{                                    code,}
+\NormalTok{                                    family,}
+\NormalTok{                                    modelData,}
+\NormalTok{                                    modelConstants,}
+\NormalTok{                                    modelInits,}
+\NormalTok{                                    nimbleINLA,}
+                                    \AttributeTok{inlaMCMC =} \FunctionTok{c}\NormalTok{(}\StringTok{"inla"}\NormalTok{, }\StringTok{"mcmc"}\NormalTok{, }\StringTok{"inlamcmc"}\NormalTok{),}
+                                    \AttributeTok{inlaMCsampler =} \StringTok{"RW\_INLA\_block"}\NormalTok{,}
+                                    \AttributeTok{samplerControl =} \FunctionTok{list}\NormalTok{(),}
+                                    \AttributeTok{parametersToMonitor =} \FunctionTok{list}\NormalTok{(}\AttributeTok{mcmc =} \FunctionTok{c}\NormalTok{(}\StringTok{"mcmc"}\NormalTok{),}
+                                                               \AttributeTok{inla =} \FunctionTok{c}\NormalTok{(}\StringTok{"inla"}\NormalTok{),}
+                                                               \AttributeTok{additionalPars =} \ConstantTok{NULL}\NormalTok{),}
+                                    \AttributeTok{mcmcConfiguration =} \FunctionTok{list}\NormalTok{(}\AttributeTok{n.chains =} \DecValTok{1}\NormalTok{,}
+                                                             \AttributeTok{n.iterations =} \DecValTok{10}\NormalTok{,}
+                                                             \AttributeTok{n.burnin =} \DecValTok{0}\NormalTok{,}
+                                                             \AttributeTok{n.thin =} \DecValTok{1}\NormalTok{,}
+                                                             \AttributeTok{setSeed =} \ConstantTok{TRUE}\NormalTok{,}
+                                                             \AttributeTok{samples=}\ConstantTok{TRUE}\NormalTok{,}
+                                                             \AttributeTok{samplesAsCodaMCMC =} \ConstantTok{TRUE}\NormalTok{,}
+                                                             \AttributeTok{summary =} \ConstantTok{TRUE}\NormalTok{,}
+                                                             \AttributeTok{WAIC =} \ConstantTok{FALSE}\NormalTok{))\{}
+
+
+
+  \CommentTok{\#extract necessary variables}
+\NormalTok{  x }\OtherTok{\textless{}{-}}\NormalTok{ covariate }\CommentTok{\# must be a matrix}
+\NormalTok{  y }\OtherTok{\textless{}{-}}\NormalTok{ data }\CommentTok{\# must be a vector}
+\NormalTok{  family }\OtherTok{\textless{}{-}}\NormalTok{ family}
+\NormalTok{  fixedVals }\OtherTok{\textless{}{-}}\NormalTok{ parametersToMonitor}\SpecialCharTok{$}\NormalTok{inla}
+\NormalTok{  target }\OtherTok{\textless{}{-}}\NormalTok{ parametersToMonitor}\SpecialCharTok{$}\NormalTok{mcmc}
+
+  \CommentTok{\#set up initial value}
+\NormalTok{  initsList }\OtherTok{\textless{}{-}} \FunctionTok{modelInits}\NormalTok{()}
+
+  \CommentTok{\#Create the model in nimble}
+\NormalTok{  mwtc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{nimbleModel}\NormalTok{(code,}
+                              \AttributeTok{data =}\NormalTok{ modelData,}
+                              \AttributeTok{constants =}\NormalTok{ modelConstants,}
+                              \AttributeTok{inits =}\NormalTok{ initsList)}
+
+  \CommentTok{\# Create the model in C}
+\NormalTok{  Cmwtc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{compileNimble}\NormalTok{(mwtc,}
+                                 \AttributeTok{showCompilerOutput =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#Have issues compiling}
+
+  \CommentTok{\#create list to return}
+\NormalTok{  retList }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+  \CommentTok{\# Fit INLAMCMC}
+
+  \ControlFlowTok{if}\NormalTok{(inlaMCMC }\SpecialCharTok{\%in\%} \StringTok{"inlamcmc"}\NormalTok{)\{}
+\NormalTok{    mcmcconf }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{configureMCMC}\NormalTok{(Cmwtc,}
+                                      \AttributeTok{nodes =} \ConstantTok{NULL}\NormalTok{)}
+
+    \CommentTok{\# setting sampler controls}
+\NormalTok{    samplerControl}\SpecialCharTok{$}\NormalTok{fit.inla }\OtherTok{=}\NormalTok{ nimbleINLA}
+\NormalTok{    samplerControl}\SpecialCharTok{$}\NormalTok{x }\OtherTok{=}\NormalTok{ x}
+\NormalTok{    samplerControl}\SpecialCharTok{$}\NormalTok{y }\OtherTok{=}\NormalTok{ y}
+\NormalTok{    samplerControl}\SpecialCharTok{$}\NormalTok{fixedVals }\OtherTok{=}\NormalTok{ fixedVals}
+\NormalTok{    samplerControl}\SpecialCharTok{$}\NormalTok{fam }\OtherTok{=}\NormalTok{ family}
+
+    \CommentTok{\# mcmc configuration}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{addSampler}\NormalTok{(}\AttributeTok{target =}\NormalTok{ target,}
+                        \AttributeTok{type =}\NormalTok{ inlaMCsampler,}
+                        \AttributeTok{control =}\NormalTok{ samplerControl)}
+
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{printSamplers}\NormalTok{(}\AttributeTok{executionOrder =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{addMonitors}\NormalTok{(target)}
+
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(parametersToMonitor}\SpecialCharTok{$}\NormalTok{additionalPars))\{}
+\NormalTok{      mcmcconf}\SpecialCharTok{$}\FunctionTok{addMonitors}\NormalTok{(parametersToMonitor}\SpecialCharTok{$}\NormalTok{additionalPars)}
+\NormalTok{    \}}
+
+    \CommentTok{\#build model}
+\NormalTok{    Rmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{buildMCMC}\NormalTok{(mcmcconf)}
+
+    \CommentTok{\# Compile}
+\NormalTok{    cmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{compileNimble}\NormalTok{(Rmcmc,}
+                                   \AttributeTok{project =}\NormalTok{ Cmwtc,}
+                                   \AttributeTok{resetFunctions =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    startTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{    mcmc.out }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{runMCMC}\NormalTok{(cmcmc,}
+                                \AttributeTok{niter =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.iterations"}\NormalTok{]],}
+                                \AttributeTok{nchains =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.chains"}\NormalTok{]],}
+                                \AttributeTok{nburnin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.burnin"}\NormalTok{]],}
+                                \CommentTok{\#inits = initsList,}
+                                \AttributeTok{thin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.thin"}\NormalTok{]],}
+                                \AttributeTok{setSeed =}\NormalTok{ mcmcConfiguration[[}\StringTok{"setSeed"}\NormalTok{]],}
+                                \AttributeTok{samples =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samples"}\NormalTok{]],}
+                                \AttributeTok{samplesAsCodaMCMC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samplesAsCodaMCMC"}\NormalTok{]],}
+                                \AttributeTok{summary =}\NormalTok{ mcmcConfiguration[[}\StringTok{"summary"}\NormalTok{]],}
+                                \AttributeTok{WAIC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"WAIC"}\NormalTok{]])}
+\NormalTok{    endTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{    timeTaken }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(endTime, startTime, }\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)}
+      \CommentTok{\#as.numeric(endTime {-} startTime)}
+
+\NormalTok{    ret }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{mcmc.out =}\NormalTok{ mcmc.out,}
+                \AttributeTok{timeTaken =}\NormalTok{ timeTaken)}
+
+    \CommentTok{\#save inlamcmc results}
+\NormalTok{    retList}\SpecialCharTok{$}\NormalTok{inlamcmc }\OtherTok{\textless{}{-}}\NormalTok{ ret}
+\NormalTok{  \}}
+
+  \ControlFlowTok{if}\NormalTok{(inlaMCMC }\SpecialCharTok{\%in\%} \StringTok{"mcmc"}\NormalTok{)\{}
+\NormalTok{    mcmcconf }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{configureMCMC}\NormalTok{(Cmwtc,}
+                                      \AttributeTok{monitors =} \FunctionTok{c}\NormalTok{(target, fixedVals))}
+
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{printSamplers}\NormalTok{()}
+
+    \CommentTok{\# Add new samplers}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{removeSampler}\NormalTok{(target)}
+   \CommentTok{\# mcmcconf$removeSampler("beta")}
+    \CommentTok{\#mcmcconf$addSampler("beta", type = inlaMCsampler)}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{addSampler}\NormalTok{(target, }\AttributeTok{type =}\NormalTok{ inlaMCsampler,}
+                        \AttributeTok{control =}\NormalTok{ samplerControl)}
+
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{printSamplers}\NormalTok{(}\AttributeTok{executionOrder =} \ConstantTok{TRUE}\NormalTok{)}
+
+    \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(parametersToMonitor}\SpecialCharTok{$}\NormalTok{additionalPars))\{}
+\NormalTok{      mcmcconf}\SpecialCharTok{$}\FunctionTok{addMonitors}\NormalTok{(parametersToMonitor}\SpecialCharTok{$}\NormalTok{additionalPars)}
+\NormalTok{    \}}
+    \CommentTok{\#build model}
+\NormalTok{    Rmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{buildMCMC}\NormalTok{(mcmcconf, }\AttributeTok{useConjugacy =} \ConstantTok{FALSE}\NormalTok{)}
+
+    \CommentTok{\# Compile}
+\NormalTok{    cmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{compileNimble}\NormalTok{(Rmcmc,}
+                                   \AttributeTok{project =}\NormalTok{ Cmwtc,}
+                                   \AttributeTok{resetFunctions =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{    startTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{    mcmc.out }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{runMCMC}\NormalTok{(cmcmc,}
+                                \AttributeTok{niter =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.iterations"}\NormalTok{]],}
+                                \AttributeTok{nchains =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.chains"}\NormalTok{]],}
+                                \AttributeTok{nburnin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.burnin"}\NormalTok{]],}
+                                \CommentTok{\#inits = initsList,}
+                                \AttributeTok{thin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.thin"}\NormalTok{]],}
+                                \AttributeTok{setSeed =}\NormalTok{ mcmcConfiguration[[}\StringTok{"setSeed"}\NormalTok{]],}
+                                \AttributeTok{samples =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samples"}\NormalTok{]],}
+                                \AttributeTok{samplesAsCodaMCMC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samplesAsCodaMCMC"}\NormalTok{]],}
+                                \AttributeTok{summary =}\NormalTok{ mcmcConfiguration[[}\StringTok{"summary"}\NormalTok{]],}
+                                \AttributeTok{WAIC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"WAIC"}\NormalTok{]])}
+\NormalTok{    endTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{    timeTaken }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(endTime, startTime, }\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)}
+
+\NormalTok{    ret }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{mcmc.out =}\NormalTok{ mcmc.out,}
+                \AttributeTok{timeTaken =}\NormalTok{ timeTaken)}
+
+    \CommentTok{\#save results for MCMC}
+\NormalTok{    retList}\SpecialCharTok{$}\NormalTok{mcmc }\OtherTok{\textless{}{-}}\NormalTok{  ret}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(retList)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{fitting-models-with-alternative-two}{%
+\section{Fitting models with Alternative
+Two}\label{fitting-models-with-alternative-two}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{INLAWiNim }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data,}
+\NormalTok{                      code,}
+\NormalTok{                      fam,}
+\NormalTok{                      modelData,}
+\NormalTok{                      modelConstants,}
+\NormalTok{                      modelInits,}
+                      \AttributeTok{parametersToMonitor =} \FunctionTok{c}\NormalTok{(}\StringTok{"beta"}\NormalTok{, }\StringTok{"sigma"}\NormalTok{, }\StringTok{"intercept"}\NormalTok{),}
+                      \AttributeTok{mcmcControl =} \ConstantTok{NULL}\NormalTok{,}
+                      \AttributeTok{mcmcSamplerChange =} \ConstantTok{FALSE}\NormalTok{,}
+                      \AttributeTok{parametersForSamplerChange =} \ConstantTok{NULL}\NormalTok{,}
+                      \AttributeTok{newSampler =} \ConstantTok{NULL}\NormalTok{,}
+                      \AttributeTok{newSamplerControl =} \ConstantTok{NULL}\NormalTok{,}
+                      \AttributeTok{mcmcConfiguration =} \FunctionTok{list}\NormalTok{(}\AttributeTok{n.chains =} \DecValTok{1}\NormalTok{,}
+                                               \AttributeTok{n.iterations =} \DecValTok{10}\NormalTok{,}
+                                               \AttributeTok{n.burnin =} \DecValTok{0}\NormalTok{,}
+                                               \AttributeTok{n.thin =} \DecValTok{1}\NormalTok{,}
+                                               \AttributeTok{setSeed =} \ConstantTok{TRUE}\NormalTok{,}
+                                               \AttributeTok{samples=}\ConstantTok{TRUE}\NormalTok{,}
+                                               \AttributeTok{samplesAsCodaMCMC =} \ConstantTok{TRUE}\NormalTok{,}
+                                               \AttributeTok{summary =} \ConstantTok{TRUE}\NormalTok{,}
+                                               \AttributeTok{WAIC =} \ConstantTok{TRUE}\NormalTok{))\{}
+
+
+
+
+\NormalTok{  initsList }\OtherTok{\textless{}{-}} \FunctionTok{modelInits}\NormalTok{()}
+  \CommentTok{\#initsList \textless{}{-} idm\_inits()}
+
+
+  \CommentTok{\#Create the model in nimble}
+\NormalTok{  mwtc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{nimbleModel}\NormalTok{(code,}
+                              \AttributeTok{data =}\NormalTok{ modelData,}
+                              \AttributeTok{constants =}\NormalTok{ modelConstants,}
+                              \AttributeTok{inits =}\NormalTok{ initsList)}
+
+  \CommentTok{\# Create the model in C}
+\NormalTok{  Cmwtc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{compileNimble}\NormalTok{(mwtc,}
+                                 \AttributeTok{showCompilerOutput =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#Have issues compiling}
+
+  \ControlFlowTok{if}\NormalTok{(}\SpecialCharTok{!}\FunctionTok{is.null}\NormalTok{(mcmcControl))\{}
+\NormalTok{    mcmcconf }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{configureMCMC}\NormalTok{(Cmwtc,}
+                                      \AttributeTok{monitors =}\NormalTok{ parametersToMonitor,}
+                                      \AttributeTok{control =}\NormalTok{ mcmcControl,}
+                                      \AttributeTok{enableWAIC =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    mcmcconf }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{configureMCMC}\NormalTok{(Cmwtc,}
+                                      \AttributeTok{monitors =}\NormalTok{ parametersToMonitor,}
+                                      \AttributeTok{enableWAIC =} \ConstantTok{FALSE}
+\NormalTok{    )}
+\NormalTok{  \}}
+
+  \ControlFlowTok{if}\NormalTok{(mcmcSamplerChange }\SpecialCharTok{==} \ConstantTok{TRUE}\NormalTok{)\{}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{removeSamplers}\NormalTok{(parametersForSamplerChange)}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{addSampler}\NormalTok{(}\AttributeTok{target =}\NormalTok{ parametersForSamplerChange,}
+                        \AttributeTok{type =}\NormalTok{ newSampler,}
+                        \AttributeTok{control =}\NormalTok{ newSamplerControl)}
+\NormalTok{    mcmcconf}\SpecialCharTok{$}\FunctionTok{printSamplers}\NormalTok{()}
+\NormalTok{  \}}
+
+\NormalTok{  Rmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{buildMCMC}\NormalTok{(mcmcconf)}
+
+  \CommentTok{\# Compile}
+\NormalTok{  cmcmc }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{compileNimble}\NormalTok{(Rmcmc,}
+                                 \AttributeTok{project =}\NormalTok{ Cmwtc,}
+                                 \AttributeTok{resetFunctions =} \ConstantTok{TRUE}\NormalTok{)}
+
+  \CommentTok{\#MCMC Configurations}
+
+
+  \CommentTok{\# Run the MCMC}
+\NormalTok{  startTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{  mcmc.out }\OtherTok{\textless{}{-}}\NormalTok{ nimble}\SpecialCharTok{::}\FunctionTok{runMCMC}\NormalTok{(cmcmc,}
+                              \AttributeTok{niter =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.iterations"}\NormalTok{]],}
+                              \AttributeTok{nchains =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.chains"}\NormalTok{]],}
+                              \AttributeTok{nburnin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.burnin"}\NormalTok{]],}
+                              \CommentTok{\#inits = initsList,}
+                              \AttributeTok{thin =}\NormalTok{ mcmcConfiguration[[}\StringTok{"n.thin"}\NormalTok{]],}
+                              \AttributeTok{setSeed =}\NormalTok{ mcmcConfiguration[[}\StringTok{"setSeed"}\NormalTok{]],}
+                              \AttributeTok{samples =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samples"}\NormalTok{]],}
+                              \AttributeTok{samplesAsCodaMCMC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"samplesAsCodaMCMC"}\NormalTok{]],}
+                              \AttributeTok{summary =}\NormalTok{ mcmcConfiguration[[}\StringTok{"summary"}\NormalTok{]],}
+                              \AttributeTok{WAIC =}\NormalTok{ mcmcConfiguration[[}\StringTok{"WAIC"}\NormalTok{]])}
+
+\NormalTok{  endTime }\OtherTok{\textless{}{-}} \FunctionTok{Sys.time}\NormalTok{()}
+\NormalTok{  timeTaken }\OtherTok{\textless{}{-}} \FunctionTok{difftime}\NormalTok{(endTime, startTime, }\AttributeTok{units =} \StringTok{"secs"}\NormalTok{)}
+  \CommentTok{\#Output from the MCMC}
+\NormalTok{  output }\OtherTok{\textless{}{-}}\NormalTok{ mcmc.out}\SpecialCharTok{$}\NormalTok{summary}
+\NormalTok{  output}
+
+
+  \ControlFlowTok{if}\NormalTok{(fam }\SpecialCharTok{==} \StringTok{"gaussian"}\NormalTok{)\{}
+
+\NormalTok{    scales }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{    accept }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{    prop\_history }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+
+\NormalTok{  \}}\ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    scales }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{    accept }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{    prop\_history }\OtherTok{\textless{}{-}} \ConstantTok{NA}
+\NormalTok{  \}}
+
+
+\NormalTok{  returnList }\OtherTok{=} \FunctionTok{list}\NormalTok{(}\AttributeTok{output=}\NormalTok{output,}
+                    \AttributeTok{scales=}\NormalTok{scales,}
+                    \AttributeTok{accept=}\NormalTok{accept,}
+                    \AttributeTok{prop\_history=}\NormalTok{prop\_history,}
+                    \AttributeTok{mcmc.out=}\NormalTok{mcmc.out,}
+                    \AttributeTok{timeTaken =}\NormalTok{ timeTaken)}
+
+
+  \FunctionTok{return}\NormalTok{(returnList)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+
+
+  \bibliography{references.bib}
+
+
+\end{document}

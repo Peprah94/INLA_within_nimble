@@ -1,0 +1,52 @@
+---
+title: "chuff"
+format: pdf
+editor: visual
+---
+
+The random-walk block proposal is a Metropolis Hastings algorithm, and following the discussion by @gomez2018markov, proposal distributions need to be chosen to propose new values of $\mathbf{z}_c$, and this proposed value (say $\mathbf{z}_c^{\star}$) will be accepted or rejected with acceptance probability:
+
+\begin{equation}\label{rwmhar}
+\alpha = \text{min}\bigg \{ 1, \frac{\pi(\mathbf{y}| \mathbf{z}_{c}) \pi(\mathbf{z}_c^{\star}) q(\mathbf{z}_{c}^{(j)}| \mathbf{z}_c^{\star})}{\pi(\mathbf{y}| \mathbf{z}_{c}^{(j)})\pi(\mathbf{z}_c^{(j)}) q(\mathbf{z}_c^{\star}|\mathbf{z}_{c}^{(j)})}    \bigg \},
+\end{equation} where $q(.|.)$ is the proposal distribution; $\pi(\mathbf{y}| \mathbf{z}_{c}^{(j)})$ and $\pi(\mathbf{y}| \mathbf{z}_{c})$ are marginal distributions approximated with \textbf{R-INLA}; and $\pi(\mathbf{z}_c^{\star})$ and $\pi(\mathbf{z}_c)$ are the prior distributions of $\mathbf{z}_c^{\star}$ and $\pi(\mathbf{z}_c)$ respectively. Algorithm \eqref{alg:RWblocksampler} presents the process of drawing the posterior samples of $\mathbf{z}$ using the RW-block sampler with INLA.
+
+For each step $j$ of the MCMC, a conditional marginal distribution on $\mathbf{z}_{c}^{(j)}$ is approximated by integrating over $\mathbf{z}_{c}$:
+
+\begin{equation}\label{marginalzcmcmc}
+\begin{split}
+\pi(z_{-c,k}|\mathbf{y}) &= \int \pi(z_{-c,k}|\mathbf{z}_c, \mathbf{y})\pi(\mathbf{z}_c| \mathbf{y})d\mathbf{z}_c\\
+&= \frac{1}{N} \sum_{j = 1}^{N} \pi(z_{-c,k}|\mathbf{z}^{j}_c, \mathbf{y}),
+\end{split}
+\end{equation} where $N$ is the number of samples of the posterior distribution of $z_c$. This implies that the marginal of $z_{-c,k}$ can be obtained via Bayesian model averaging (BMA). In \textbf{R-INLA}, posterior estimates can be obtained from functions \textit{inla.emarginal} (for posterior mean) and \textit{inla.zmarginal} (for several other summary statistics).
+
+The random walk block sampler can perform poorly when estimating covariance structures, non-linear link functions and or more complicated hierarchical models [@tibbits2014automated]. Slice sampling algorithm [@neal2003slice] provides an efficient multivariate approach to draw from the posterior distribution of $\mathbf{z}_{c}$, whether $\mathbf{z}_{c}$ is a continuous or discrete random variable or both. \textbf{nimble} [@nimblePackage] implements the adaptive factor slice sampling proposed by [@tibbits2014automated].
+
+Slice sampling algorithm samples from a $K$-dimensional parameter space of $\mathbf{z}_{c}$ by using uniform deviates to draw from an arbitrary density function after constructing a $K+1$ dimensional random walk [@tibbits2014automated]. This process is achieved by alternating steps that updates the auxiliary axis ans steps that update the axis of $\mathbf{z}_{c}$. R-package \textbf{nimble} [@nimblePackage] has implemented the adaptive factor slice sampling algorithm where univariate updates are made along eigen vectors.
+
+This method has been implemented in R programming language, making it readily accessible to users. Moreover, the R implementation (\textbf{R-INLA} package) provides other quantities of interest, such as approximation of the marginal likelihood, Deviance Information Criterion \citep[DIC; ][]{spiegelhalter2002bayesian}, Wantenabe Akaike Information Criterion (WAIC) \[REF\], Conditional Predictive Ordinate (CPO) \[REF\], etc. The last three quantities are necessary for model choice ans assessment.
+
+The random walk block sampler, however, can perform poorly when estimating covariance structures, non-linear link functions and or more complicated hierarchical models [@tibbits2014automated]. Slice sampling algorithm [@neal2003slice] provides an efficient multivariate approach to draw from the posterior distribution of $\mathbf{z}_{c}$, whether $\mathbf{z}_{c}$ is a continuous or discrete random variable or both. \textbf{nimble} [@nimblePackage] implements AFSS proposed by [@tibbits2014automated], where univariate updates are made along eigen vectors.
+
+Using the default AFSS implemented in the R-package \textbf{nimble} means that the INLA function will be called during each univariate update along the eigenvectors, which can make the proposed method slower. We therefore customised the AFSS to incorporate the marginal likelihood estimate from the INLA-defined function returned before any univariate update is made, and univariate updates are made with the inclusion of this marginal likelihood estimate in the decision process. The returned samples of the $K$ dimensional model space from MCMC will be conditioned on the initial marginal likelihood estimate. This algorithm is summarized in Algorithm \ref{alg:alttwo}.
+
+```{=tex}
+\begin{algorithm}
+\caption{Customized AFSS algorithm with INLA defined function}\label{alg:alttwo}
+\begin{algorithmic}
+\For{$i$ in $1:n.iter$ } 
+  \If{i = 1}
+  \State $\mathbf{z}_{c} := \mathbf{0} $
+  \EndIf
+\\
+  \State Fit INLA with $\mathbf{z}_c^{(i-1)}$ as fixed values and extract $\pi(\mathbf{y}| \mathbf{z}_{c}^{(i-1)})$ and $E(z_{-c,k}^{(i-1)})$. \\
+  \State Draw the height under the density function ($h^{(i)}$) needed for the slice sampling update as: $h^{(i)} \sim Uniform(0, f(\mathbf{z}_{c}))$, where $f(\mathbf{z}_{c})$ is the density of $\mathbf{z}_{c}$\\
+  \State Set $\mathbf{z}_{c}^{\star}:= \mathbf{z}_c^{(i-1)}$\\
+\For{each basis vector $\Gamma_k \in \mathbb{\Gamma}$}
+  \State Sample a parameter in the orthogonal space $\eta_k^{(i)} \sim$ Uniform on A = $\{\eta_k: f(\eta_k \Gamma_k + \mathbf{z}_{c}^{\star}) \ge h^{(i)} \}$ and the estimation of $f(\eta_k \Gamma_k + \mathbf{z}_{c}^{\star})$ uses $\pi(\mathbf{y}| \mathbf{z}_{c}^{(i-1)})$ from the INLA defined function\\
+  \State Update $\mathbf{z}_{c}^{\star}:= \mathbf{z}_{c}^{\star} + \eta_k^{(i)}\Gamma_k \mathbf{z}_c^{(i-1)}$\\
+\EndFor
+\State Set $\mathbf{z}_{c}^{(i)} := \mathbf{z}_{c}^{\star}$.
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+```

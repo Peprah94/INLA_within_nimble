@@ -1,0 +1,6 @@
+flowchart TD
+    id1(Write INLA function) -->|Compile in C++| id3(BuildINLA model in NIMBLE - save conditioned samples as model values)
+    id3 -->|Use returned marginal likelihood and saved model values for fixed parameters| id5(Customize MCMC sampler)
+    id5 --> id6(Add sampler to MCMC configuration,  build and compile it )
+        id4(Define NIMBLE code and compile it) --> id6
+    id6 --> id7(Run MCMC for posterior samples of model parameters)
